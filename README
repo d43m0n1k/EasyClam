@@ -1,0 +1,27 @@
+Overview
+
+EasyClam is a bash script designed to simplify the installation, configuration, and management of ClamAV, an open-source antivirus engine for detecting trojans, viruses, malware, and other malicious threats. This script automates tasks such as installing ClamAV, configuring updates, setting up cron jobs for regular scans, and managing ClamAV service.
+Features
+
+    Checks for root privileges.
+    Option to enable debug mode for detailed logging.
+    Detects the system's package manager to handle installations.
+    Optional system update prompt before installing ClamAV.
+    Installs ClamAV if not already installed.
+    Reconfigures, reinstalls, or removes ClamAV if already present.
+    Configures FreshClam for automatic virus definition updates.
+    Sets up cron jobs for regular scans and updates.
+
+Usage
+Running the Script
+
+To run the script, ensure you have the necessary permissions and execute the following command in your terminal:
+
+git clone https://github.com/d43m0n1k/EasyClam.git
+cd EasyClam
+sudo bash ./EasyClam.sh
+
+Follow the prompts to install, setup, and configure ClamAV. https://www.clamav.net/ - https://github.com/Cisco-Talos/clamav
+
+This script is totally unnesscary but I am learning bash, and this was fun to put together. If you have any issues, please do a pull request and I will investigate :)
+
