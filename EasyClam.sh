@@ -34,6 +34,7 @@ else
     echo -e "\nSkipping license info..."
 fi
 
+
 # Function to check for root privileges
 check_root() {
     if [[ $EUID -ne 0 ]]; then
@@ -347,27 +348,33 @@ setup_cron() {
                     ;;
             esac
             echo "Cron installed successfully."
-            
-            # Enable and start the cron service
-            if command -v systemctl &> /dev/null; then
-                sudo systemctl enable --now crond || sudo systemctl enable --now cron
-            elif command -v service &> /dev/null; then
-                sudo service crond start || sudo service cron start
-            else
-                echo "Unable to start cron service. Please start it manually."
-            fi
         else
             echo "Cron installation skipped."
             return
         fi
     else
         echo "Cron is already installed."
-        # Ensure the cron service is running
-        if command -v systemctl &> /dev/null; then
-            sudo systemctl start crond || sudo systemctl start cron
-        elif command -v service &> /dev/null; then
-            sudo service crond start || sudo service cron start
+    fi
+
+    # Ensure the cron service is running
+    if command -v systemctl &> /dev/null; then
+        if systemctl list-units --type=service --all | grep -q 'crond.service'; then
+            sudo systemctl enable --now crond
+        elif systemctl list-units --type=service --all | grep -q 'cron.service'; then
+            sudo systemctl enable --now cron
+        else
+            echo "No known cron service found. Please start it manually."
         fi
+    elif command -v service &> /dev/null; then
+        if service --status-all | grep -q 'crond'; then
+            sudo service crond start
+        elif service --status-all | grep -q 'cron'; then
+            sudo service cron start
+        else
+            echo "No known cron service found. Please start it manually."
+        fi
+    else
+        echo "Unable to manage cron service. Please start it manually."
     fi
 
     # Proceed with setting up the cron job for scans
