@@ -25,3 +25,4 @@ Follow the prompts to install, setup, and configure ClamAV. https://www.clamav.n
 
 This script is totally unnesscary but I am learning bash, and this was fun to put together. If you have any issues, please do a pull request and I will investigate :)
 
+Tested working on Kubuntu 22, 24; Nobara 38; EndevourOS; Lubuntu 24, testing openSUSE (LEAP) 
