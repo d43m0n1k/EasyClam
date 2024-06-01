@@ -19,6 +19,7 @@ To run the script, ensure you have the necessary permissions and execute the fol
 
 git clone https://github.com/d43m0n1k/EasyClam.git
 cd EasyClam
+sudo chmod +x ./EasyClam.sh
 sudo bash ./EasyClam.sh
 
 Follow the prompts to install, setup, and configure ClamAV. https://www.clamav.net/ - https://github.com/Cisco-Talos/clamav
